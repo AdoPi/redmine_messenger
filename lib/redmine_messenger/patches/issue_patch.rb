@@ -95,9 +95,10 @@ module RedmineMessenger
           end
           attachment[:fields] = fields if fields.any?
 
-          Messenger.speak(l(:label_messenger_issue_updated,
+          Messenger.speak(l(:label_messenger_issue_updated_hack,
                             project_url: "<#{Messenger.object_url project}|#{Messenger.markup_format(project)}>",
                             url: send_messenger_mention_url(project, description),
+                            status: status,
                             user: current_journal.user),
                           channels, url, attachment: attachment, project: project)
         end
