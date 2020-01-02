@@ -3,12 +3,12 @@ raise "\n\033[31mredmine_messenger requires ruby 2.3 or newer. Please update you
 require_dependency 'redmine_messenger'
 
 Redmine::Plugin.register :redmine_messenger do
-  name 'Redmine Messenger'
-  author 'AlphaNodes GmbH'
-  url 'https://github.com/alphanodes/redmine_messenger'
-  author_url 'https://alphanodes.com/'
+  name 'Hacked Redmine Messenger'
+  author 'AdoPi + AlphaNodes GmbH'
+  url 'https://github.com/AdoPi/redmine_messenger'
+  author_url 'https://github.com/AdoPi'
   description 'Messenger integration for Slack, Discord, Rocketchat and Mattermost support'
-  version '1.0.6'
+  version '1.0.6-hacked'
 
   requires_redmine version_or_higher: '4.0.0'
 
