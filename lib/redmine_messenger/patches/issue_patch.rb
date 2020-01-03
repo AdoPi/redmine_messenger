@@ -77,28 +77,29 @@ module RedmineMessenger
           end
 
           fields = current_journal.details.map { |d| Messenger.detail_to_field d }
-          if saved_change_to_status_id?
-            fields << { title: I18n.t(:field_status),
-                        value: Messenger.markup_format(status.to_s),
-                        short: true }
-          end
 
-          if saved_change_to_priority_id?
-            fields << { title: I18n.t(:field_priority),
-                        value: Messenger.markup_format(priority.to_s),
-                        short: true }
-          end
-          if assigned_to.present?
-            fields << { title: I18n.t(:field_assigned_to),
-                        value: Messenger.markup_format(assigned_to.to_s),
-                        short: true }
-          end
+#          if saved_change_to_status_id?
+#            fields << { title: I18n.t(:field_status),
+#                        value: Messenger.markup_format(status.to_s),
+#                        short: true }
+#          end
+#
+#          if saved_change_to_priority_id?
+#            fields << { title: I18n.t(:field_priority),
+#                        value: Messenger.markup_format(priority.to_s),
+#                        short: true }
+#          end
+#          if assigned_to.present?
+#            fields << { title: I18n.t(:field_assigned_to),
+#                        value: Messenger.markup_format(assigned_to.to_s),
+#                        short: true }
+#          end
           attachment[:fields] = fields if fields.any?
 
-          Messenger.speak(l(:label_messenger_issue_updated_hack,
+          Messenger.speak(l(:label_messenger_issue_updated,
                             project_url: "<#{Messenger.object_url project}|#{Messenger.markup_format(project)}>",
                             url: send_messenger_mention_url(project, description),
-                            status: status,
+#                            status: status,
                             user: current_journal.user),
                           channels, url, attachment: attachment, project: project)
         end

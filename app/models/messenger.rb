@@ -151,6 +151,12 @@ class Messenger
       false
     end
 
+    def number_or_nil(string)
+      Integer(string || '')
+    rescue ArgumentError
+      nil
+    end
+
     def detail_to_field(detail)
       field_format = nil
       key = nil
@@ -199,8 +205,11 @@ class Messenger
         category = IssueCategory.find(detail.value)
         value = category.to_s if category.present?
       when 'assigned_to'
-        user = User.find(detail.value)
-        value = user.to_s if user.present?
+	  nuornil = number_or_nil(detail.value)
+	  if nuornil != nil
+            user = User.find(detail.value)
+            value = user.to_s if user.present?
+	  end
       when 'fixed_version'
         fixed_version = Version.find(detail.value)
         value = fixed_version.to_s if fixed_version.present?
